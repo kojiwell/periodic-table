@@ -9,21 +9,21 @@ Across different domains in computer systems, the same design principles may be 
 
 ## Table of Contents
 
-- [🟪 Group 1: Structure](#group-1-structure)  
+- [🟪 Group 1: Structure](#-group-1-structure)  
   *How to carve and connect parts with clear boundaries and extension points.*
-- [🟧 Group 2: Efficiency](#group-2-efficiency)  
+- [🟧 Group 2: Efficiency](#-group-2-efficiency)  
   *Do less work—or do it cheaper—by focusing effort where it pays.*
-- [🟨 Group 3: Semantics](#group-3-semantics)  
+- [🟨 Group 3: Semantics](#-group-3-semantics)  
   *Specify behavior and interfaces precisely.*
-- [⬜️ Group 4: Distribution](#group-4-distribution)  
+- [⬜️ Group 4: Distribution](#-group-4-distribution)  
   *Coordinate work and data across distributed architectures.*
-- [🟩 Group 5: Planning](#group-5-planning)  
+- [🟩 Group 5: Planning](#-group-5-planning)  
   *Select plans automatically from goals, costs, and constraints.*
-- [🟦 Group 6: Operability](#group-6-operability)  
+- [🟦 Group 6: Operability](#-group-6-operability)  
   *Observe, adapt, and evolve running systems with minimal disruption.*
-- [🟥 Group 7: Reliability](#group-7-reliability)  
+- [🟥 Group 7: Reliability](#-group-7-reliability)  
   *Stay correct under faults, concurrency, and partial failure.*
-- [🟫 Group 8: Security](#group-8-security)  
+- [🟫 Group 8: Security](#-group-8-security)  
   *Bound authority and enforce isolation to preserve safety and integrity.*
 
 **Legend:** `Code` = unique short symbol, `Name` = principle, `Intent` = short description.
