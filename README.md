@@ -44,6 +44,9 @@ Each principle is tagged with a short symbol (e.g., `Co` for composability, `Op`
 
 **Legend:** `Code` = unique short symbol, `Name` = principle, `Intent` = short description.
 
+<img width="408" height="423" alt="table" src="https://github.com/user-attachments/assets/f35f47fd-52b0-4ea9-9c85-5fd43d0030f6" />
+
+
 ## 🟪 Group 1: Structure
 
 🟪 **Mo – Modularity**
