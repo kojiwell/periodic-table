@@ -6,7 +6,7 @@ System design is often taught through domain-specific solutions specific to part
 
 One of the rewards of working in computer systems is the field’s sheer diversity, spanning operating systems, databases, computer architecture, distributed systems, programming languages, networking, and more, each with a rich history. For newcomers, it can be challenging to spot connections across different domains due to the diversity of traditions and vocabularies: the same design principle may appear in different guises across domains.
 
-For example, consider the classic paper on database isolation levels by Jim Gray et al. [17]. It offers a careful account of concurrency-control mechanisms and the trade-offs between correctness and performance. Yet without prior exposure to similar issues in operating systems or computer architecture, the ideas can appear narrowly “about databases.” In reality, the same design principle, "relaxation of consistency," reappears across systems in different guises, from weakly ordered memory hierarchies to eventual-consistency protocols. When each community uses its own terms and exemplars, newcomers may find it difficult to recognize the underlying design principles. This fragmentation increases cognitive overhead, as the same trade-off must be relearned in each context.
+For example, consider the classic paper on database isolation levels by Jim Gray et al. [17]. It offers a careful account of concurrency-control mechanisms and the trade-offs between correctness and performance. Yet without prior exposure to similar issues in operating systems or computer architecture, the ideas can appear narrowly “about databases.” In reality, the same design principle, "relaxation of consistency," reappears across systems in different guises, from weakly ordered memory hierarchies to eventual-consistency protocols in distributed systems. When each community uses its own terms and exemplars, newcomers may find it difficult to recognize the underlying design principles. This fragmentation increases cognitive overhead, as the same trade-off must be relearned in each context.
 
 This is a broader pattern: systems research is rich in practical insight but lighter on shared conceptual scaffolding. Across domains, similar challenges recur, managing concurrency, ensuring consistency, and adapting to change, while the framing and vocabulary often differ. As a result, deep connections between seemingly disparate domains can remain relatively obscure.
 
@@ -34,7 +34,7 @@ Each principle is tagged with a short symbol (e.g., `Co` for composability, `Op`
 ## Table of Contents
 
 - [🟪 Group 1: Structure](#-group-1-structure): *How to carve and connect parts with clear boundaries and extension points.*
-- [🟧 Group 2: Efficiency](#-group-2-efficiency): *Do less work—or do it cheaper—by focusing effort where it pays.*
+- [🟧 Group 2: Efficiency](#-group-2-efficiency): *Do less work, or do it cheaper, by focusing effort where it pays.*
 - [🟨 Group 3: Semantics](#-group-3-semantics): *Specify behavior and interfaces precisely.*
 - [⬛ Group 4: Distribution](#-group-4-distribution): *Coordinate work and data across distributed architectures.*
 - [🟩 Group 5: Planning](#-group-5-planning): *Select plans automatically from goals, costs, and constraints.*
