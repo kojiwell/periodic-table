@@ -456,6 +456,11 @@ System design spans diverse domains and vocabularies, which can make shared disc
 
 [48] Hubert Zimmermann. *OSI Reference Model – The ISO Model of Architecture for Open Systems Interconnection*. IEEE Transactions on Communications, 1980.
 
+## HOW TO CITE
+
+If you find this analysis useful, please cite it as:
+
+> Joy Arulraj. *Towards a Periodic Table of Computer System Design Principles.* arXiv preprint arXiv:TBD, 2025.
 
 ## HOW TO CONTRIBUTE
 
