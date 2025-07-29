@@ -51,11 +51,6 @@ Each principle is tagged with a short symbol (e.g., `Co` for composability, `Op`
 
 🟪 **Mo – Modularity**
 
-Partition the system into cohesive units ...
-
-
-🟪 **Mo – Modularity**
-
 Partition the system into cohesive units with minimal interfaces, so that each unit can be reasoned about, replaced, or evolved independently. This principle focuses on decomposition: choosing boundaries to favor clear separation of concerns so that each responsibility sits in one module.
 
 **Example:** The OSI model decomposes communication into standardised layers with well-defined boundaries that permit independent development and substitution [48].
