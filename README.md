@@ -1,34 +1,55 @@
 # Towards a Periodic Table of System Design Principles
 
-This repo is a living periodic table of general-purpose design principles distilled from multiple domains in computer systems, including operating systems, databases, architecture, networking, distributed systems, and PL/compilers. The goal is to make recurring ideas easier to name, teach, compare, and reuse.
+System design is often taught through domain-specific solutions specific to particular domains, such as databases, operating systems, or computer architecture, each with its own methods and vocabulary. While this diversity is a strength, it can obscure cross-cutting principles that recur across domains. This paper proposes a preliminary “periodic table” of system design principles distilled from several domains in computer systems. The goal is a shared, concise vocabulary that helps students, researchers, and practitioners reason about structure and trade-offs, compare designs across domains, and communicate choices more clearly.
 
-Across different domains in computer systems, the same design principles may be described in different ways. This repository offers a **shared vocabulary** so that students, researchers, and practitioners can better recognize connections across domains and discuss design principles with greater clarity.
+## 1. INTRODUCTION
 
+One of the rewards of working in computer systems is the field’s sheer diversity, spanning operating systems, databases, computer architecture, distributed systems, programming languages, networking, and more, each with a rich history. For newcomers, it can be challenging to spot connections across different domains due to the diversity of traditions and vocabularies: the same design principle may appear in different guises across domains.
 
-# The Periodic Table
+For example, consider the classic paper on database isolation levels by Jim Gray et al. [17]. It offers a careful account of concurrency-control mechanisms and the trade-offs between correctness and performance. Yet without prior exposure to similar issues in operating systems or computer architecture, the ideas can appear narrowly “about databases.” In reality, the same design principle, "relaxation of consistency," reappears across systems in different guises, from weakly ordered memory hierarchies to eventual-consistency protocols. When each community uses its own terms and exemplars, newcomers may find it difficult to recognize the underlying design principles. This fragmentation increases cognitive overhead, as the same trade-off must be relearned in each context.
+
+This is a broader pattern: systems research is rich in practical insight but lighter on shared conceptual scaffolding. Across domains, similar challenges recur—managing concurrency, ensuring consistency, and adapting to change—while the framing and vocabulary often differ. As a result, deep connections between seemingly disparate domains can remain relatively obscure.
+
+This article is a small step toward bridging those gaps. Borrowing Mendeleev’s metaphor, we present a "periodic table" of recurring system design principles. The goal is not a rigid taxonomy but a working vocabulary: a concise way to annotate papers, lectures, and design documents with the fundamental principles they employ. The aim is to surface structure that already exists in computer systems, so that students can form a more coherent mental map, researchers can situate contributions with precision, and practitioners can discuss design choices across domains with greater clarity.
+
+## 2. METHODOLOGY
+
+We identified principles by going over 100+ influential papers across operating systems, computer architecture, databases, networking, programming languages, security, and other domains in computer systems. These papers were chosen for historical significance and ongoing relevance, such as classic papers on concurrency control [17] and consensus [25], and more recent work on using machine learning inside systems [22] and designing systems for the cloud [6]. 
+
+For each paper we asked: what is the underlying high-level design principle? Across domains, independent systems often converged not on mechanisms but on shared design principles: for example, relaxing consistency to improve performance or lifting abstractions to enhance usability. 
+
+To qualify as a system design principle, it must satisfy two conditions:
+
+1. **Abstract** – The principle must be independent of specific technologies or implementations.  
+2. **Generality** – The principle must show up across different domains (e.g., database systems, operating systems, programming languages).
+
+This analysis does not aim to catalogue every principle, but to surface many of those with lasting, general-purpose value.
+
+## 3. THE DESIGN PRINCIPLE TABLE
+
+We have curated a structured set of 40+ general-purpose design principles distilled from the systems literature. As shown in Table 1, they are organised into thematic groups that mirror familiar axes of system design.
+
+Each principle is tagged with a short symbol (e.g., `Co` for composability, `Op` for optimistic design) for quick reference. We emphasise **design intent** rather than prescribing mechanisms: instead of “use this locking protocol” or “optimise this query plan,” the principles state aims such as “preserve correctness under concurrency” or “prioritise the common case,” leaving concrete realisations to specific domains.
 
 ## Table of Contents
 
-- [🟪 Group 1: Structure](#-group-1-structure)  
-  *How to carve and connect parts with clear boundaries and extension points.*
-- [🟧 Group 2: Efficiency](#-group-2-efficiency)  
-  *Do less work—or do it cheaper—by focusing effort where it pays.*
-- [🟨 Group 3: Semantics](#-group-3-semantics)  
-  *Specify behavior and interfaces precisely.*
-- [⬜️ Group 4: Distribution](#-group-4-distribution)  
-  *Coordinate work and data across distributed architectures.*
-- [🟩 Group 5: Planning](#-group-5-planning)  
-  *Select plans automatically from goals, costs, and constraints.*
-- [🟦 Group 6: Operability](#-group-6-operability)  
-  *Observe, adapt, and evolve running systems with minimal disruption.*
-- [🟥 Group 7: Reliability](#-group-7-reliability)  
-  *Stay correct under faults, concurrency, and partial failure.*
-- [🟫 Group 8: Security](#-group-8-security)  
-  *Bound authority and enforce isolation to preserve safety and integrity.*
+- [🟪 Group 1: Structure](#-group-1-structure): *How to carve and connect parts with clear boundaries and extension points.*
+- [🟧 Group 2: Efficiency](#-group-2-efficiency): *Do less work—or do it cheaper—by focusing effort where it pays.*
+- [🟨 Group 3: Semantics](#-group-3-semantics): *Specify behavior and interfaces precisely.*
+- [⬛ Group 4: Distribution](#-group-4-distribution): *Coordinate work and data across distributed architectures.*
+- [🟩 Group 5: Planning](#-group-5-planning): *Select plans automatically from goals, costs, and constraints.*
+- [🟦 Group 6: Operability](#-group-6-operability): *Observe, adapt, and evolve running systems with minimal disruption.*
+- [🟥 Group 7: Reliability](#-group-7-reliability): *Stay correct under faults, concurrency, and partial failure.*
+- [🟫 Group 8: Security](#-group-8-security): *Bound authority and enforce isolation to preserve safety and integrity.*
 
 **Legend:** `Code` = unique short symbol, `Name` = principle, `Intent` = short description.
 
 ## 🟪 Group 1: Structure
+
+🟪 **Mo – Modularity**
+
+Partition the system into cohesive units ...
+
 
 🟪 **Mo – Modularity**
 
@@ -143,27 +164,27 @@ Use formally stated invariants to drive safe refactoring, optimisation, or recon
 
 **Example:** In compilers, SSA treats "one definition per name" as an IR invariant; passes rewrite code while preserving semantics and then re-establish SSA \[8]. In query optimisers, relational-algebra equivalences (e.g., selection/projection pushdown) preserve result semantics \[44].
 
-## ⬜️ Group 4: Distribution
+## ⬛ Group 4: Distribution
 
-⬜️ **Lt – Location Transparency**
+⬛ **Lt – Location Transparency**
 
 Hide the physical whereabouts of resources so clients interact via uniform names or handles.
 
 **Example:** Programs can call remote procedures as if they were local, masking host location \[4].
 
-⬜️ **Dc – Decentralised Control**
+⬛ **Dc – Decentralised Control**
 
 Distribute decision-making among many nodes to avoid single points of failure or bottlenecks.
 
 **Example:** Dynamo partitions data via consistent hashing and uses gossip-based membership, avoiding any central coordinator \[12].
 
-⬜️ **Fp – Function Placement**
+⬛ **Fp – Function Placement**
 
 Place functionality where the necessary context and resources exist to achieve correctness and efficiency, avoiding redundant work elsewhere.
 
 **Example:** The end-to-end argument shows that functions like reliability checks achieve correctness only at the endpoints \[42].
 
-⬜️ **Lo – Locality of Reference**
+⬛ **Lo – Locality of Reference**
 
 Place related data and operations close together in time and space to preserve access patterns and minimize separation between computation and state.
 
@@ -309,7 +330,134 @@ Structure code or data so entire classes of errors become impossible rather than
 
 **Example:** Rust’s ownership and borrow checker prevent data races and dangling pointers at compile time \[34].
 
-# How to contribute
+## 4. CASE STUDY
+
+To illustrate how multiple design principles intersect in practice, consider the mapping from logical to physical operator plans in a relational database system.
+
+- The database system translates declarative intent into executable steps (**Policy/Mechanism Separation**).
+- SQL expresses the "what" (**Abstraction Lifting**) with precise semantics (**Semantically Explicit Interfaces**).
+- The optimizer first rewrites the query using algebraic equivalences (**Equivalence-Based Planning**).
+- It then chooses concrete physical operators using a cost model (**Cost-based Planning**).
+- Physical operators are often optimized for underlying hardware features (**Hardware-Aware Design**).
+- Predicate-pushdown illustrates **Work Avoidance**, while indexes enable **Reuse of Computation**.
+- **Advisory Hints** can guide the optimizer, and newer database systems add runtime re-optimization (**Adaptive Processing**), learned models (**Learned Approximation**), and sampling (**Probabilistic Design**).
+
+Thus, logical-to-physical operator mapping in database systems exemplifies how several design principles come together to efficiently process declarative SQL queries.
+
+## 5. LIMITATIONS
+
+Any attempt to organise a field as broad as computer systems involves trade-offs. This table is not a checklist or a universal theory; it is a shared vocabulary that highlights recurring principles and encourages structural reflection. That said, there are several limitations:
+
+- **Orthogonality**: Principles can overlap, reinforce, or partially conflict; design is about balancing such tensions.
+- **Subjectivity and granularity**: Deriving and mapping principles involves judgement; boundaries are fuzzy and different readers may tag the same system differently or interpret the same principle differently.
+- **Not a formal taxonomy**: This is not a complete or minimal set of design principles. There is no attempt to derive the principles from a minimal core.
+
+Ultimately, this table is a means to help students see recurring design principles more clearly, to assist system designers in communicating tradeoffs more precisely, and to help researchers recognize where their ideas fit into the broader landscape of system design.
+
+## 6. CONCLUSION
+
+System design spans diverse domains and vocabularies, which can make shared discussion harder. We inherit mechanisms, study tradeoffs, and build intuitions, yet concise terms for the underlying ideas are not always available. The “periodic table” of design principles offered here aims to provide a modest common language, naming recurring ideas so they are easier to teach, compare, and build upon.
+
+## REFERENCES
+
+[1] Ron Avnur and Joseph M. Hellerstein. *Eddies: Continuously Adaptive Query Processing*. In SIGMOD, 2000.
+
+[2] Rudolf Bayer and Edward McCreight. *Organization and Maintenance of Large Ordered Indexes*. Acta Informatica, 1972.
+
+[3] Hal Berenson, Philip A. Bernstein, Jim Gray, Jim Melton, Elizabeth J. O’Neil, and Patrick E. O’Neil. *A Critique of ANSI SQL Isolation Levels*. In SIGMOD, 1995.
+
+[4] Andrew D. Birrell and Bruce J. Nelson. *Implementing Remote Procedure Calls*. ACM TOCS, 1984.
+
+[5] Craig Chambers and David Ungar. *Customization: Optimizing Compiler Technology for SELF*. In PLDI, 1989.
+
+[6] Jeffrey S. Chase et al. *Managing Energy and Server Resources in Hosting Centers*. In SOSP, 2001.
+
+[7] Surajit Chaudhuri and Vivek R. Narasayya. *An Efficient, Cost-Driven Index Selection Tool for Microsoft SQL Server*. In VLDB, 1997.
+
+[8] Ron Cytron et al. *Efficiently Computing Static Single Assignment Form and the Control Dependence Graph*. ACM TOPLAS, 1991.
+
+[9] Jeff Dean and Luiz André Barroso. *The Tail at Scale*. Communications of the ACM, 2013.
+
+[10] Jeffrey Dean and Sanjay Ghemawat. *MapReduce: Simplified Data Processing on Large Clusters*. In OSDI, 2004.
+
+[11] Peter J. Denning. *The Working Set Model for Program Behavior*. Communications of the ACM, 1968.
+
+[12] Giuseppe DeCandia et al. *Dynamo: Amazon’s Highly Available Key-Value Store*. In SOSP, 2007.
+
+[13] Sally Floyd and Van Jacobson. *Random Early Detection Gateways for Congestion Avoidance*. In SIGCOMM, 1993.
+
+[14] Goetz Graefe. *The Cascades Framework for Query Optimisation*. HPL Technical Report HPL-95-18, 1995.
+
+[15] Jim Gray. *Why Do Computers Stop and What Can Be Done About It?* Tandem Technical Report, 1986.
+
+[16] Jim Gray and Andreas Reuter. *Transaction Processing: Concepts and Techniques*. Morgan Kaufmann, 1993.
+
+[17] J. N. Gray et al. *Granularity of Locks in a Shared Data Base*. In VLDB, 1975.
+
+[18] Maurice Herlihy and J. Eliot B. Moss. *Transactional Memory: Architectural Support for Lock-Free Data Structures*. In ISCA, 1993.
+
+[19] John Hughes. *Why Functional Programming Matters*. In *Research Topics in Functional Programming*, Addison-Wesley, 1990.
+
+[20] Stratos Idreos et al. *Database Cracking*. In CIDR, 2007.
+
+[21] Michael Isard et al. *Quincy: Fair Scheduling for Distributed Computing Clusters*. In SOSP, 2009.
+
+[22] Daniel A. Jiménez and Calvin Lin. *Dynamic Branch Prediction with Perceptrons*. In HPCA, 2001.
+
+[23] Donald E. Knuth. *Structured Programming with go to Statements*. ACM Computing Surveys, 1974.
+
+[24] H. T. Kung and John T. Robinson. *On Optimistic Methods for Concurrency Control*. ACM TODS, 1981.
+
+[25] Leslie Lamport. *The Part-Time Parliament*. ACM TOCS, 1998.
+
+[26] Leslie Lamport. *The Part-Time Parliament*. ACM TOCS, 1998.
+
+[27] Leslie Lamport. *Specifying Systems: The TLA+ Language and Tools for Hardware and Software Engineers*. Addison-Wesley, 2002.
+
+[28] Butler W. Lampson. *Protection*. ACM Operating Systems Review, 1974.
+
+[29] Butler W. Lampson. *Hints for Computer System Design*. ACM Operating Systems Review, 1983.
+
+[30] Chris Lattner and Vikram Adve. *LLVM: A Compilation Framework for Lifelong Program Analysis & Transformation*. In CGO, 2004.
+
+[31] C. L. Lawson et al. *Basic Linear Algebra Subprograms for Fortran Usage*. ACM TOMS, 1979.
+
+[32] R. Levin et al. *Policy/Mechanism Separation in Hydra*. In SOSP, 1975.
+
+[33] Henry Lieberman. *Your Wish is My Command: Programming by Example*. Morgan Kaufmann, 2001.
+
+[34] Nicholas D. Matsakis and Felix Klock. *The Rust Language*. In ACM SIGAda, 2014.
+
+[35] Robert T. Morris. *A Tour of the Worm*. USENIX, 1989.
+
+[36] David L. Parnas. *Designing Software for Ease of Extension and Contraction*. IEEE TSE, 1979.
+
+[37] Vern Paxson. *End-to-End Internet Packet Dynamics*. IEEE/ACM TON, 1999.
+
+[38] K. Petersen et al. *Flexible Update Propagation for Weakly Consistent Replication*. In SOSP, 1997.
+
+[39] Hamid Pirahesh et al. *Extensible/Rule-Based Query Rewrite Optimization in Starburst*. In SIGMOD, 1992.
+
+[40] Gerald J. Popek and Robert P. Goldberg. *Formal Requirements for Virtualizable Third Generation Architectures*. Communications of the ACM, 1974.
+
+[41] Dennis M. Ritchie and Ken Thompson. *The UNIX Time-Sharing System*. Communications of the ACM, 1974.
+
+[42] J. H. Saltzer et al. *End-to-End Arguments in System Design*. ACM TOCS, 1984.
+
+[43] Jerome H. Saltzer and Michael D. Schroeder. *The Protection of Information in Computer Systems*. Proc. IEEE, 1975.
+
+[44] Patricia G. Selinger et al. *Access Path Selection in a Relational Database Management System*. In SIGMOD, 1979.
+
+[45] Alexander A. Stepanov and Meng Lee. *The Standard Template Library*. HP Laboratories Technical Report, 1994. 
+
+[46] Michael Stonebraker and Lawrence A. Rowe. *The Design of POSTGRES*. In SIGMOD, 1986.
+
+[47] R. Clint Whaley and Jack J. Dongarra. *Automatically Tuned Linear Algebra Software*. In SC, 1998.
+
+[48] Hubert Zimmermann. *OSI Reference Model – The ISO Model of Architecture for Open Systems Interconnection*. IEEE Transactions on Communications, 1980.
+
+
+## HOW TO CONTRIBUTE
 
 We welcome PRs that add, refine, or re-group principles, and PRs that add "classic" papers as examples. Open an issue describing:
   - **What** you are adding or changing.
