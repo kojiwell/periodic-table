@@ -49,6 +49,12 @@ Each principle is tagged with a short symbol (e.g., `Co` for composability, `Op`
 
 ## 🟪 Group 1: Structure
 
+🟪 **Si – Simplicity**
+
+Choose the simplest system design that meets current needs; resist complexity, such as additional layers, services, or generality added "just in case", until evidence shows benefit. 
+
+**Example:** Avoid premature architectural optimisation of the system [23].
+
 🟪 **Mo – Modularity**
 
 Partition the system into cohesive units with minimal interfaces, so that each unit can be reasoned about, replaced, or evolved independently. This principle focuses on decomposition: choosing boundaries to favor clear separation of concerns so that each responsibility sits in one module.
