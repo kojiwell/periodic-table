@@ -1,5 +1,7 @@
 # Elements of System Design
 
+#### [Joy Arulraj (Georgia Tech)](https://faculty.cc.gatech.edu/~jarulraj/)
+
 System design is often taught through  solutions specific to particular domains, such as databases, operating systems, or computer architecture, each with its own methods and vocabulary. While this diversity is a strength, it can obscure cross-cutting principles that recur across domains. This paper proposes a preliminary taxonomy of system design principles distilled from several domains in computer systems. The goal is a shared, concise vocabulary that helps students, researchers, and practitioners reason about structure and trade-offs, compare designs across domains, and communicate choices more clearly.
 
 ## 1. INTRODUCTION
@@ -464,7 +466,21 @@ System design spans diverse domains and vocabularies, which can make shared disc
 
 If you find this analysis useful, please cite it as:
 
-> Joy Arulraj. *Elements of System Design* arXiv preprint arXiv:TBD, 2025.
+```
+@misc{arulraj2025periodictablecomputerdesign,
+      title={Towards a Periodic Table of Computer System Design Principles}, 
+      author={Joy Arulraj},
+      year={2025},
+      eprint={2507.22098},
+      archivePrefix={arXiv},
+      primaryClass={cs.OH},
+      url={https://arxiv.org/abs/2507.22098}, 
+}
+```
+or
+
+> Joy Arulraj. *Towards a Periodic Table of Computer System Design Principles* arXiv preprint arXiv:2507.22098, 2025.
+
 
 ## HOW TO CONTRIBUTE
 
