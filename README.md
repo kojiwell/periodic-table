@@ -46,7 +46,7 @@ Each principle is tagged with a short symbol (e.g., `Co` for composability, `Op`
 
 **Legend:** `Code` = unique short symbol, `Name` = principle, `Intent` = short description.
 
-<img width="408" height="423" alt="table" src="https://github.com/user-attachments/assets/f35f47fd-52b0-4ea9-9c85-5fd43d0030f6" />
+<img width="400" alt="periodic-table" src="https://github.com/user-attachments/assets/36e11f9b-e99b-4138-85c1-f92f1306c3d6" />
 
 
 ## 🟪 Group 1: Structure
@@ -86,6 +86,12 @@ Separate what should be done (policy) from how it is carried out (mechanism) by 
 Design a single core with explicit variation points like types, knobs, or plug-ins, so that it can serve many use cases without duplication, but specialise when doing so yields meaningful gains in performance, accuracy, or clarity.
 
 **Example:** The C++ Standard Template Library is a collection of containers, iterators, and algorithms parameterized by templates [45]. Postgres allows users to add types and operators to the core database system [46].
+
+🟪 **Pd – Probabilistic Design** 
+
+Introduce controlled randomness to gain efficiency, scalability, or simplicity while accepting a small, quantified risk of error or loss.
+
+**Example:** Routers treat queue length as a probability signal: as the queue grows, they drop incoming packets with increasing probability, proactively signalling congestion [13].
 
 ## 🟧 Group 2: Efficiency
 
@@ -136,7 +142,6 @@ Proceed as if the common case will succeed, skipping coordination, and rely on a
 Replace hand-crafted algorithms with models trained on data, trading bounded inaccuracy for efficiency or flexibility.
 
 **Example:** The perceptron branch predictor learns weights online to forecast branch outcomes, outperforming fixed two-bit counters without enlarging the table [22].
-
 
 ## 🟨 Group 3: Semantics
 
@@ -195,6 +200,12 @@ Place functionality where the necessary context and resources exist to achieve c
 Place related data and operations close together in time and space to preserve access patterns and minimize separation between computation and state.
 
 **Example:** The working-set model formalises temporal locality to keep hot pages in memory \[11].
+
+⬛ **Cz – Coordination Avoidance** 
+
+Design computations and dataflows to reduce the need for distributed coordination by identifying operations that can proceed independently while preserving application-level correctness.
+
+**Example:** CRDTs allow replicas to update independently and merge states deterministically, guaranteeing convergence without runtime coordination \[47].
 
 ## 🟩 Group 5: Planning
 
