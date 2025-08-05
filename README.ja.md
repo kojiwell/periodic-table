@@ -180,7 +180,7 @@ Design components that can be safely and flexibly recombined; rely on explicit c
 
 🟪 **Co – Composability (構成可能性)**
 
-部品を安全かつ柔軟に組み合わせられるように設計すること。明示的な契約や型制約のあるインターフェースに基づくことで、合法な組み合わせが常に正しく動作し、部品を積み木のように自由に組み立てられるようにする。モジュール性が「分けること」に重点を置くのに対し、この原則は「組み合わせ直すこと」に重点を置く。
+部品を安全かつ柔軟に組み合わせられるように設計すること。明示的な契約や型制約のあるインターフェースに基づくことで、有効な組み合わせが常に正しく動作し、部品を積み木のように自由に組み立てられるようにする。モジュール性が「分けること」に重点を置くのに対し、この原則は「組み合わせ直すこと」に重点を置く。
 
 **例：** Unixのプログラム（例：grep、sort、uniq）は標準入力から読み、標準出力に書き出すため、複雑なテキスト処理パイプラインを柔軟に組み合わせて構築できる[41]。
 
@@ -226,11 +226,24 @@ Design a single core with explicit variation points like types, knobs, or plug-i
 
 **例：** C++の標準テンプレートライブラリは、テンプレートによってパラメータ化されたコンテナ、イテレータ、アルゴリズムの集合である[45]。Postgresは、ユーザーがコアのデータベースに型や演算子を追加できるようにしている[46]。
 
+
+🟪 **Pd – Probabilistic Design**
+
+Introduce controlled randomness to gain efficiency, scalability, or simplicity while accepting a small, quantified risk of error or loss.
+
+**Example:** Routers treat queue length as a probability signal: as the queue grows, they drop incoming packets with increasing probability, proactively signalling congestion [13].
+
+🟪 **Pd – Probabilistic Design (確率的設計)**
+
+小さく定量化された誤りや損失のリスクを受け入れつつ、効率性、スケーラビリティ、単純さを得るために、制御されたランダム性を導入する。
+
+**例：** ルーターはキューの長さを確率的な信号として扱い、キューが増えるほどパケットをドロップする確率を上げることで、輻輳を能動的に通知する[13]。
+
 <!--
 ## 🟧 Group 2: Efficiency
 -->
 
-## グループ 2： Efficiency 効率 {#-group-2-efficiency-ja}
+## グループ 2： Efficiency (効率) {#-group-2-efficiency-ja}
 
 <!--
 🟧 **Sc – Scalability**
@@ -487,14 +500,13 @@ Place related data and operations close together in time and space to preserve a
 
 Design computations and dataflows to reduce the need for distributed coordination by identifying operations that can proceed independently while preserving application-level correctness.
 
-**Example:** CRDTs allow replicas to update independently and merge states deterministically, guaranteeing convergence without runtime coordination [49].
--->
+**Example:** CRDTs allow replicas to update independently and merge states deterministically, guaranteeing convergence without runtime coordination [47].-->
 
 ⬛ **Cz – Coordination Avoidance (協調の回避)**
 
 アプリケーションレベルの正しさを保ちながら、処理やデータの流れを設計して、分散環境での同期や調整を最小限に抑える。独立に進められる操作を見極めることが重要である。
 
-**例：** CRDTは、各レプリカが独立して更新を行い、その状態を決定的にマージすることで、実行時の協調なしに収束を保証している[49]。
+**例：** CRDTは、各レプリカが独立して更新を行い、その状態を決定的にマージすることで、実行時の協調なしに収束を保証している[47]。
 
 <!--
 ## 🟩 Group 5: Planning
@@ -1003,8 +1015,6 @@ System design spans diverse domains and vocabularies, which can make shared disc
 [47] R. Clint Whaley and Jack J. Dongarra. *Automatically Tuned Linear Algebra Software*. In SC, 1998.
 
 [48] Hubert Zimmermann. *OSI Reference Model – The ISO Model of Architecture for Open Systems Interconnection*. IEEE Transactions on Communications, 1980.
-
-[49] Marc Shapiro, Nuno Preguiça, Carlos Baquero, and Marek Zawirski. 2011. Conflict-free Replicated Data Types. Technical Report. INRIA.
 
 <!--
 ## HOW TO CITE
